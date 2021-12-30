@@ -9,12 +9,13 @@ class CustomBtn extends StatelessWidget {
     required this.color,
     required this.onPressed,
     required this.primaryColor,
+    required this.textColor,
   }) : super(key: key);
 
   final String? btnName;
   final IconData? icon;
-  final Color? color, primaryColor;
-  final Function()? onPressed;
+  final Color? color, primaryColor, textColor;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class CustomBtn extends StatelessWidget {
           btnName!,
           style: TextStyle(
             fontSize: 18.0,
-            color: Colors.black,
+            color: textColor,
           ),
         ),
       ),

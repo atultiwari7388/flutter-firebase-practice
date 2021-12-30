@@ -1,9 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_with_firebase/Widgets/custom_btn.widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SigninPage extends StatelessWidget {
   const SigninPage({Key? key}) : super(key: key);
+
+  //signin anonymously
+
+  Future<void> _signInAnonymously() async {
+    final userCredentials = await FirebaseAuth.instance.signInAnonymously();
+    print("${userCredentials.user!.uid}");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +44,7 @@ class SigninPage extends StatelessWidget {
             color: Colors.red,
             onPressed: () {},
             primaryColor: Colors.blue,
+            textColor: Colors.white,
           ),
           SizedBox(height: 8.0),
           CustomBtn(
@@ -44,6 +53,7 @@ class SigninPage extends StatelessWidget {
             color: Colors.blue,
             onPressed: () {},
             primaryColor: Colors.white,
+            textColor: Colors.black,
           ),
           SizedBox(height: 8.0),
           CustomBtn(
@@ -52,6 +62,7 @@ class SigninPage extends StatelessWidget {
             color: Colors.white,
             onPressed: () {},
             primaryColor: Colors.blue,
+            textColor: Colors.white,
           ),
           SizedBox(height: 8.0),
           Text(
@@ -65,11 +76,12 @@ class SigninPage extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           CustomBtn(
-            btnName: 'Continue as Guest',
+            btnName: 'Go anonymus',
             icon: (FontAwesomeIcons.user),
             color: Colors.white,
-            onPressed: () {},
+            onPressed: _signInAnonymously,
             primaryColor: Colors.blue,
+            textColor: Colors.white,
           ),
         ],
       ),
