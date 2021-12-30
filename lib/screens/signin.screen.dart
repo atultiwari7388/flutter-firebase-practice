@@ -1,19 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_with_firebase/Widgets/custom_btn.widgets.dart';
+import 'package:flutter_with_firebase/services/auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SigninPage extends StatelessWidget {
-  const SigninPage({Key? key, required this.onSignin}) : super(key: key);
-
+  const SigninPage({Key? key, required this.onSignin, required this.auth})
+      : super(key: key);
+  final AuthBase auth;
   final void Function(User) onSignin;
 
   //signin anonymously
 
   Future<void> _signInAnonymously() async {
     try {
-      final userCredentials = await FirebaseAuth.instance.signInAnonymously();
-      onSignin(userCredentials.user!);
+      final user = await auth.signInAnonymous();
+      onSignin(user!);
     } catch (e) {
       print(e.toString());
     }
